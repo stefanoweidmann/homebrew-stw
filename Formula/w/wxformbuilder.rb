@@ -13,7 +13,7 @@ class Wxformbuilder < Formula
   def install
     # specify wx widgets version explicitly otherwise it fails to build on linux
     # https://forums.wxwidgets.org/viewtopic.php?t=49123
-    system "cmake", "-S", ".", "-B", "build", "-DwxWidgets_CONFIG_OPTIONS=--version=3.2", *std_cmake_args
+    system "cmake", "-S", ".", "-B", "build", *std_cmake_args
     system "cmake", "--build", "build"
     system "cmake", "--install", "build"
   end
