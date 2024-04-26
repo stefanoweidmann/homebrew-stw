@@ -11,8 +11,9 @@ class Wxformbuilder < Formula
   depends_on "wxwidgets"
 
   def install
-    # specify wx widgets version explicitly otherwise it fails to build on linux
-    # https://forums.wxwidgets.org/viewtopic.php?t=49123
+    inreplace "CMakeLists.txt" do |s| {
+      s.gsub!(/set\(wxWidgetsComponentsRequired.*\)/, /set(wxWidgetsComponentsRequired all)/)
+    }
     system "cmake", "-S", ".", "-B", "build", *std_cmake_args
     system "cmake", "--build", "build"
     system "cmake", "--install", "build"
