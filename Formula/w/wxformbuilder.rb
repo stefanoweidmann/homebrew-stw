@@ -6,7 +6,7 @@ class Wxformbuilder < Formula
   license "GPL-2.0-or-later"
   head "https://github.com/wxFormBuilder/wxFormBuilder.git", branch: "master"
 
-  depends_on "boost" => :build
+  depends_on "boost@1.76"
   depends_on "cmake" => :build
   depends_on "wxwidgets"
 
