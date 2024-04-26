@@ -12,7 +12,7 @@ class Wxformbuilder < Formula
 
   def install
     inreplace "CMakeLists.txt" do |s| {
-      s.gsub!(/set\(wxWidgetsComponentsRequired.*\)/, /set(wxWidgetsComponentsRequired all)/)
+      s.gsub!(/set\(wxWidgetsComponentsRequired.*\)/, "set(wxWidgetsComponentsRequired all)")
     }
     system "cmake", "-S", ".", "-B", "build", *std_cmake_args
     system "cmake", "--build", "build"
