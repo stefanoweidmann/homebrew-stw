@@ -11,7 +11,7 @@ class Wxformbuilder < Formula
   depends_on "wxwidgets"
 
   def install
-    inreplace "CMakeLists.txt", /set\(wxWidgetsComponentsRequired.*\)/, "set(wxWidgetsComponentsRequired all)"
+    inreplace "CMakeLists.txt", /^set\(wxWidgetsComponentsRequired.*\)/, "set(wxWidgetsComponentsRequired all)"
     system "cmake", "-S", ".", "-B", "build", *std_cmake_args
     system "cmake", "--build", "build"
     system "cmake", "--install", "build"
