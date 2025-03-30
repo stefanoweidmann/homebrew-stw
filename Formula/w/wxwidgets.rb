@@ -23,10 +23,10 @@ class Wxwidgets < Formula
   end
 
   depends_on "pkgconf" => :build
-  depends_on "jpeg-turbo"
-  depends_on "libpng"
-  depends_on "libtiff"
-  depends_on "pcre2"
+  #depends_on "jpeg-turbo"
+  #depends_on "libpng"
+  #depends_on "libtiff"
+  #depends_on "pcre2"
 
   uses_from_macos "expat"
   uses_from_macos "zlib"
@@ -50,8 +50,8 @@ class Wxwidgets < Formula
 
   def install
     # Remove all bundled libraries excluding `nanosvg` which isn't available as formula
-    %w[catch pcre].each { |l| rm_r(buildpath/"3rdparty"/l) }
-    %w[expat jpeg png tiff zlib].each { |l| rm_r(buildpath/"src"/l) }
+    #%w[catch pcre].each { |l| rm_r(buildpath/"3rdparty"/l) }
+    #%w[expat jpeg png tiff zlib].each { |l| rm_r(buildpath/"src"/l) }
 
     args = [
       "--disable-shared",
@@ -65,16 +65,20 @@ class Wxwidgets < Formula
       "--enable-svg",
       "--enable-unicode",
       "--enable-webviewwebkit",
-      "--with-expat",
-      "--with-libjpeg",
-      "--with-libpng",
-      "--with-libtiff",
+      "--with-expat=builtin",
+      "--with-libjpeg=builtin",
+      "--with-libpng=builtin",
+      "--with-libtiff=builtin",
       "--with-opengl",
-      "--with-zlib",
+      "--with-zlib=builtin",
+      "--without-libcurl",
+      "--with-regex=builtin",
+      "--with-urlsession",
       "--disable-tests",
       "--disable-precomp-headers",
       # This is the default option, but be explicit
       "--disable-monolithic",
+      "--disable-sys-libs",
     ]
 
     if OS.mac?
